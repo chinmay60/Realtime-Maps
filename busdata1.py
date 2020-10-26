@@ -44,7 +44,7 @@ def generate_checkpoint(coordinates):
         time.sleep(1)
       
 
-        #if the bus reaches the last coordinate, start from the beginning
+        #If the bus reaches the last coordinate, start from the beginning
         if i == len(coordinates) - 1:
             i = 0
         i += 1
