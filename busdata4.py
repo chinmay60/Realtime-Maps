@@ -20,7 +20,7 @@ def generate_uuid():
 
 #kafka producer
 client = KafkaClient(hosts="localhost:9092")
-topic = client.topics['geodata_final']
+topic = client.topics['final_geodata']
 producer = topic.get_sync_producer()
 
 

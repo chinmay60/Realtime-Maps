@@ -29,11 +29,13 @@
         mapMarkers1 =  []
         mapMarkers2 =  []
         mapMarkers3 =  []
+        mapMarkers4 =  []
+        mapMarkers5 =  []
 
-        var source = new EventSource('/topic/geodata_final')
+        var source = new EventSource('/topic/final_geodata')
         source.addEventListener('message', function (e) {
 
-            console.log('Message');
+            
             obj = JSON.parse(e.data);
             console.log(obj);
 
@@ -59,6 +61,21 @@
                 }
                 marker3 = L.marker([obj.latitude, obj.longitude]).addTo(mymap);
                 mapMarkers3.push(marker3);
+            }
+            if (obj.busline == '00004') {
+                for (var i = 0; i < mapMarkers4.length; i++) {
+                    mymap.removeLayer(mapMarkers4[i]);
+                }
+                marker4 = L.marker([obj.latitude, obj.longitude]).addTo(mymap);
+                mapMarkers4.push(marker4);
+            }
+
+            if (obj.busline == '00005') {
+                for (var i = 0; i < mapMarkers5.length; i++) {
+                    mymap.removeLayer(mapMarkers5[i]);
+                }
+                marker5 = L.marker([obj.latitude, obj.longitude]).addTo(mymap);
+                mapMarkers5.push(marker5);
             }
         }, false);
     </script>
