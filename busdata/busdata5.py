@@ -5,10 +5,9 @@ from datetime import datetime
 import uuid
 import time
 
-
 #Read coordinates from geoJason
 
-input_file = open('./data/bus2.json')
+input_file = open('../data/bus5.json')
 json_array = json.load(input_file)
 coordinates = json_array['features'][0]['geometry']['coordinates']
 
@@ -28,7 +27,7 @@ producer = topic.get_sync_producer()
 #construct message
 
 data = {}
-data['busline'] = '00002'
+data['busline'] = '00005'
 
 
 def generate_checkpoint(coordinates):
