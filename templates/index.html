@@ -1,1 +1,66 @@
-FUN
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <h1>London Bus Live Maps</h1>
+    <div id="mapid" style="width: 900px; height: 580px;"></div>
+    <script>
+        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1IjoiY2hpbm1heTYwIiwiYSI6ImNrZ3F6MTR4ZjBtczkyd21sa204MG02cnEifQ.wh08QJg_0pioc5LQDP2t-A'
+        }).addTo(mymap);
+
+        mapMarkers1: []
+        mapMarkers2: []
+        mapMarkers3: []
+
+        var source = newEventSource('/topic/geodata_final')
+        source.addEventListener('message', function (e) {
+            console.log('message');
+            obj = JSON.parse(e.data);
+            cosole.log(obj);
+
+            if (obj.busline = '00001') {
+                for (var i = 0; i < mapMarket.length; i++) {
+                    mymap.removeLayer(mapMarkers1[i]);
+                }
+                marker1 = L.marker([obj.latitude, obj.longitude],).addTo(mymap)
+                mapMarkers1.push(marker1)
+            }
+
+            if (obj.busline = '00002') {
+                for (var i = 0; i < mapMarket.length; i++) {
+                    mymap.removeLayer(mapMarkers2[i]);
+                }
+                marker2 = L.marker([obj.latitude, obj.longitude],).addTo(mymap)
+                mapMarkers1.push(marker2)
+            }
+
+            if (obj.busline = '00003') {
+                for (var i = 0; i < mapMarket.length; i++) {
+                    mymap.removeLayer(mapMarkers3[i]);
+                }
+                marker3 = L.marker([obj.latitude, obj.longitude],).addTo(mymap)
+                mapMarkers1.push(marker3)
+            }
+        })
+    </script>
+</body>
+
+</html>
