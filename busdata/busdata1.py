@@ -1,6 +1,6 @@
 
 from pykafka import KafkaClient
-from get_bus_data import get_bus_data
+from get_bus_data import *
 import json
 from datetime import datetime
 import uuid
