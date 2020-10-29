@@ -1,9 +1,12 @@
 
 from pykafka import KafkaClient
+from get_bus_data import get_bus_data
 import json
 from datetime import datetime
 import uuid
 import time
+
+
 
 #Read coordinates from geoJason
 
@@ -28,6 +31,9 @@ producer = topic.get_sync_producer()
 
 data = {}
 data['busline'] = '00001'
+
+
+
 
 
 def generate_checkpoint(coordinates):
